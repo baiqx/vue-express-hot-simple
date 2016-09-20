@@ -29,11 +29,17 @@ module.exports = {
             test: /\.(png|jpg|gif|svg)$/,
             loader: 'file',
             query: {
-                name: '[name].[ext]?[hash]'
+                name: 'file/[name].[ext]'
             }
         }]
     },
-    vue: {},
+    vue: {
+        postcss: [
+            require('autoprefixer')({
+                browsers: ['last 3 versions']
+            })
+        ]
+    },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
